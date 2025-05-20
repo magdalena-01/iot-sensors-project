@@ -1,0 +1,411 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f1fef3, #dcfce7);
+        display: flex;
+        color: #333;
+    }
+
+    .sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 1000;
+        margin-left: -120px;
+    }
+
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            gap: 10px;
+        }
+
+            .sidebar a:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-left: 4px solid darkgreen;
+                color: darkgreen;
+                transform: translateX(5px);
+            }
+
+        .sidebar .login-button {
+            padding: 20px 30px;
+            margin-right: 70px;
+        }
+
+            .sidebar .login-button a {
+                width: 100%;
+                display: inline-block;
+                background: rgba(255, 255, 255, 0.15);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                padding: 12px;
+                border-radius: 10px;
+                text-align: center;
+                font-weight: 600;
+                text-decoration: none;
+                transition: background 0.3s ease, transform 0.2s ease;
+                backdrop-filter: blur(10px);
+            }
+
+                .sidebar .login-button a:hover {
+                    background: rgba(255, 255, 255, 0.25);
+                    color: #5edfff;
+                    box-shadow: 0 4px 20px rgba(94, 223, 255, 0.3);
+                    transform: scale(1.05);
+                }
+
+    .main-content {
+        margin-left: 250px;
+        padding: 40px;
+        width: 100%;
+    }
+
+        .main-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-left: 270px;
+        margin-top: 130px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        width: 230px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+    .charts-wrapper {
+        margin-top: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-left: 250px;
+    }
+
+    .chart-container {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        width: 500px;
+        height: 350px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+    }
+
+    .glassy-green-navbar {
+        background: #38a169;
+        backdrop-filter: blur(16px) saturate(120%);
+        -webkit-backdrop-filter: blur(16px) saturate(120%);
+        border-right: 2px solid rgba(255, 255, 255, 0.05);
+        color: #e6f9e6;
+        font-family: 'Segoe UI', sans-serif;
+        padding: 30px 15px;
+        min-height: 100vh;
+        margin-top: -130px;
+    }
+
+        .glassy-green-navbar .nav-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+            color: #d3fcd3;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .glassy-green-navbar .nav-links a,
+        .glassy-green-navbar .login-button a {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #f1fff1;
+            background: rgba(255, 255, 255, 0.05);
+            transition: 0.3s ease-in-out;
+        }
+
+            .glassy-green-navbar .nav-links a:hover,
+            .glassy-green-navbar .login-button a:hover {
+                background: rgba(255, 255, 255, 0.12);
+                color: #ffffff;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                transform: scale(1.03);
+            }
+
+        .glassy-green-navbar a svg.icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            stroke: #c0ffc0;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .glassy-green-navbar .login-button {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+</style>
+
+<!-- Sidebar -->
+<div class="sidebar glassy-green-navbar">
+    <div class="nav-header">
+        🌿 SmartControl
+    </div>
+
+    <div class="nav-links">
+        <a href="/">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
+            Dashboard
+        </a>
+        <a href="/Sensors/Types">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" /></svg>
+            Sensor Types
+        </a>
+        <a href="/Sensors/LatestValues">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /><path d="M9 9h6v6H9z" /></svg>
+            Soil & Climate
+        </a>
+        <a href="/Visualization/Index">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18M9 17V9m4 8v-6m4 6v-4" /></svg>
+            Visualization
+        </a>
+        <a href="/Fields/Overview">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
+            Fields Overview
+        </a>
+        <a href="/Sensors/History">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 8v4l3 3" /><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" /></svg>
+            History
+        </a>
+    </div>
+
+    <div class="login-button">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Logout">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7" /><path d="M3 21h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H3" /></svg>
+                Logout
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Login">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z" /><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" /></svg>
+                Login
+            </a>
+        }
+    </div>
+
+</div>
+
+
+<!-- Cards -->
+<div class="card-container">
+    <div class="card">
+        <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" /></svg>
+            Total Values
+        </h3>
+        <p>@Model.TotalSensors</p>
+    </div>
+
+    <div class="card">
+        <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11h-2V7h2zm0 4h-2v-2h2z" /></svg>
+            Current Temp
+        </h3>
+        <p>@Model.CurrentTemp &deg;C</p>
+    </div>
+
+    <div class="card">
+        <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16M4 8h16M4 16h16" /></svg>
+            Min Temp
+        </h3>
+        <p>@Model.MinTemp &deg;C</p>
+    </div>
+
+    <div class="card">
+        <h3>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /><path d="M8 16l4-4 4 4" /></svg>
+            Max Temp
+        </h3>
+        <p>@Model.MaxTemp &deg;C</p>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="charts-wrapper">
+    <div class="chart-container">
+        <canvas id="tempLineChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="tempBarChart"></canvas>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="border-top footer text-muted">
+    <div class="cent">
+        &copy;2025 Smart Control
+    </div>
+</footer>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const tempLabels = ['Current Temp', 'Min Temp', 'Max Temp'];
+    const tempData = [@Model.CurrentTemp, @Model.MinTemp, @Model.MaxTemp];
+
+    const ctxLine = document.getElementById('tempLineChart').getContext('2d');
+    new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: tempLabels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: tempData,
+                fill: false,
+                borderColor: 'rgba(41, 128, 185, 1)',
+                backgroundColor: 'rgba(41, 128, 185, 0.2)',
+                tension: 0.3,
+                pointBackgroundColor: ['#2980b9', '#27ae60', '#c0392b'],
+                pointBorderColor: '#fff',
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperature Overview (Line Chart)'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Temperature (°C)'
+                    }
+                }
+            }
+        }
+    });
+
+    const ctxBar = document.getElementById('tempBarChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: tempLabels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: tempData,
+                backgroundColor: [
+                    'rgba(41, 128, 185, 0.8)',
+                    'rgba(39, 174, 96, 0.8)',
+                    'rgba(192, 57, 43, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(41, 128, 185, 1)',
+                    'rgba(39, 174, 96, 1)',
+                    'rgba(192, 57, 43, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperature Overview (Bar Chart)'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Temperature (°C)'
+                    }
+                }
+            }
+        }
+    });
+</script>

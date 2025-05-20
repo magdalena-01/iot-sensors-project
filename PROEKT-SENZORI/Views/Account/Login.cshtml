@@ -1,0 +1,204 @@
+﻿@model PROEKT_SENZORI.Models.User
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SmartControl - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+    
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e0f7df, #c6f0e1);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: floatGrid 40s linear infinite;
+            z-index: -1;
+        }
+
+        @@keyframes floatGrid {
+            0%
+
+        {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 1000px 1000px;
+        }
+
+        }
+
+        
+        .container {
+            display: flex;
+            gap: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            max-width: 950px;
+            width: 90%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            width: 360px;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            color: #2d3748;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+            .card h2 {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+                color: #22543d;
+                text-align: center;
+            }
+
+        .logo {
+            width: 80px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 0 5px #38a169);
+        }
+
+        .description {
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2f3e2e;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #2d3748;
+        }
+
+        input {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            color: #1a202c;
+            outline: none;
+        }
+
+            input:focus {
+                box-shadow: 0 0 0 2px #9ae6b4;
+            }
+
+        button {
+            background-color: #38a169;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #2f855a;
+            }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @@media (max-width: 768px) {
+            .container
+
+        {
+            flex-direction: column;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .card {
+            width: 100%;
+        }
+        #logo{
+            height: 100px;
+            width: 100px;
+        }
+     
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <div class="container">
+        <!-- App Info Card -->
+        <div class="card">
+            <img src="~/images/logo.png" alt="SmartControl Logo" id="logo"/>
+            <h2>Welcome to SmartControl</h2>
+            <p class="description">
+                SmartControl is a next-generation sensor platform for smart agriculture. Monitor real-time temperature, humidity, and soil conditions with precision.
+                <br /><br />
+                Empower your farm with intelligent insights and data-driven decisions for healthier crops, optimized irrigation, and higher yields.
+            </p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="card">
+            <h2>Login to Dashboard</h2>
+            <form asp-action="Login" method="post" class="login-form">
+                <div>
+                    <label>Email:  </label>
+                    <input type="email" name="Email" required />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="password" name="Password" required />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            @if (ViewBag.Error != null)
+            {
+                <p class="error-message">@ViewBag.Error</p>
+            }
+        </div>
+    </div>
+</body>
+</html>

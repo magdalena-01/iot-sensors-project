@@ -1,0 +1,136 @@
+﻿@model List<PROEKT_SENZORI.Models.DATA>
+
+<h2 class="page-title">Sensor Data Log</h2>
+
+<div class="table-container">
+    <table class="history-table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Sensor 1</th>
+                <th>Sensor 2</th>
+                <th>Sensor 3</th>
+                <th>Sensor 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.Time</td>
+                    <td>@record.Sensor1</td>
+                    <td>@record.Sensor2</td>
+                    <td>@record.Sensor3</td>
+                    <td>@record.Sensor4</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #3b4a6b, #242f42); /* Darker gradient background */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff; /* Light text for readability */
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Title Styling */
+    .page-title {
+        font-size: 2.5rem;
+        text-align: center;
+        background: linear-gradient(to right, #00d4ff, #c33764); /* Gradient text */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        margin-bottom: 30px;
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Glassmorphism Table Container */
+    .table-container {
+        background: rgba(255, 255, 255, 0.15); /* Frosted glass effect */
+        border-radius: 15px;
+        padding: 20px;
+        backdrop-filter: blur(25px); /* Enhanced blur for glass effect */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Darker shadow */
+        border: 1px solid rgba(255, 255, 255, 0.5); /* More contrast */
+        max-width: 90%;
+        margin: 0 auto;
+        animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Glassmorphism Table */
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.1rem;
+        text-align: center;
+        color: #fff; /* White text for contrast */
+        letter-spacing: 1px;
+    }
+
+        .history-table th, .history-table td {
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styling */
+        .history-table th {
+            background: rgba(44, 62, 80, 0.9); /* Dark blue background for header */
+            color: #ecf0f1;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        /* Row Hover Effect */
+        .history-table tr:hover {
+            background: rgba(255, 255, 255, 0.2); /* Slightly lighter row hover effect */
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Row Styling */
+        .history-table tr:nth-child(even) {
+            background: rgba(39, 174, 96, 0.15); /* Darker green for even rows */
+        }
+
+        .history-table tr:nth-child(odd) {
+            background: rgba(41, 128, 185, 0.15); /* Darker blue for odd rows */
+        }
+
+        /* Table Data Styling */
+        .history-table td {
+            color: #fff; /* White text for better readability */
+        }
+
+        /* Hover Animation */
+        .history-table th, .history-table td {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+    /* Animation for Table Appearance */
+    @@keyframes fadeIn {
+        0%
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    /* Add some padding around the page */
+    .container {
+        padding: 40px;
+    }
+</style>
